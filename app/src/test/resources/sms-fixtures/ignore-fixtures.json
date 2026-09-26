@@ -1,0 +1,12 @@
+{
+  "fixtures": [
+    {
+      "body": "Your OTP for login is 482913. Do not share this with anyone.",
+      "expectedType": "IGNORE"
+    },
+    {
+      "body": "Special offer! Get cashback upto Rs.500 on your next purchase. Apply now!",
+      "expectedType": "IGNORE"
+    }
+  ]
+}

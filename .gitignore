@@ -1,0 +1,27 @@
+# Gradle
+.gradle/
+build/
+app/build/
+app/schemas/
+local.properties
+*.iml
+.idea/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Android
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# Kotlin
+.kotlin/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (docs check script has no deps, but keep this tidy if added later)
+node_modules/

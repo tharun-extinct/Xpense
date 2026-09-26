@@ -1,0 +1,29 @@
+{
+  "rules": [
+    {
+      "id": "card-spent-card-no-then-merchant",
+      "messageType": "DEBIT",
+      "pattern": "\\bspent\\s+card\\s+no\\.?\\s*[x*0-9]+\\s*(?:rs\\.?|inr|₹)?\\s*(?<amount>[0-9][0-9,]*(?:\\.[0-9]{1,2})?)\\s+[0-9][0-9:/-]{4,10}\\s+(?<merchant>[a-zA-Z0-9 .&@_'/-]{2,40}?)(?=\\s+avl\\b|\\s+ref(?:no|erence)?\\b|\\s*[.;,]|\\s+-[a-z]+\\s*$|$)"
+    },
+    {
+      "id": "card-used-for-at",
+      "messageType": "DEBIT",
+      "pattern": "\\bcard\\b.{0,40}?\\bfor\\s*(?:rs\\.?|inr|₹)\\s*(?<amount>[0-9][0-9,]*(?:\\.[0-9]{1,2})?)\\s+at\\s+(?<merchant>[a-zA-Z0-9 .&@_'/-]{2,40}?)(?=\\s+on\\b|\\s+avl\\b|\\s+ref(?:no|erence)?\\b|\\s*[.;,]|\\s+-[a-z]+\\s*$|$)"
+    },
+    {
+      "id": "card-spent-at",
+      "messageType": "DEBIT",
+      "pattern": "\\bspent\\b.{0,60}?(?:rs\\.?|inr|₹)\\s*(?<amount>[0-9][0-9,]*(?:\\.[0-9]{1,2})?)\\b.{0,40}?\\bat\\s+(?<merchant>[a-zA-Z0-9 .&@_'/-]{2,40}?)(?=\\s+on\\b|\\s+avl\\b|\\s+ref(?:no|erence)?\\b|\\s*[.;,]|\\s+-[a-z]+\\s*$|$)"
+    },
+    {
+      "id": "atm-withdrawal",
+      "messageType": "DEBIT",
+      "pattern": "(?:rs\\.?|inr|₹)\\s*(?<amount>[0-9][0-9,]*(?:\\.[0-9]{1,2})?)\\s*(?:has\\s+been\\s+)?withdrawn\\b.{0,60}?\\bat\\s+(?<merchant>[a-zA-Z0-9 .&@_'/-]{2,40}?)(?=\\s+on\\b|\\s+ref(?:no|erence)?\\b|\\s*[.;,]|\\s+-[a-z]+\\s*$|$)"
+    },
+    {
+      "id": "bill-emi-debit",
+      "messageType": "DEBIT",
+      "pattern": "\\b(?:emi|bill|autopay|mandate|si)\\s*(?:of|amount|for)?\\s*(?:rs\\.?|inr|₹)?\\s*(?<amount>[0-9][0-9,]*(?:\\.[0-9]{1,2})?)\\s*(?:is\\s+|has\\s+been\\s+)?(?:debited|deducted|paid)\\s*(?:towards|for|to)?\\s*(?<merchant>[a-zA-Z0-9 .&@_'/-]{2,40}?)(?=\\s+on\\b|\\s+ref(?:no|erence)?\\b|\\s*[.;,]|\\s+-[a-z]+\\s*$|$)"
+    }
+  ]
+}

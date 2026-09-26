@@ -1,0 +1,29 @@
+{
+  "rules": [
+    {
+      "id": "upi-debit-sent-from-to",
+      "messageType": "DEBIT",
+      "pattern": "\\bsent\\s*(?:rs\\.?|inr|₹)\\s*(?<amount>[0-9][0-9,]*(?:\\.[0-9]{1,2})?)\\s+from\\b.{0,60}?\\bto\\s+(?:vpa\\s+)?(?<merchant>[a-zA-Z0-9 .&@_'/-]{2,40}?)(?=\\s+on\\b|\\s+ref(?:no|erence)?\\b|\\s+upi\\b|\\s+a/c\\b|\\s*[.;,]|\\s+-[a-z]+\\s*$|$)"
+    },
+    {
+      "id": "upi-debit-debited-by-trf-to",
+      "messageType": "DEBIT",
+      "pattern": "\\bdebited\\s+by\\s*(?:rs\\.?|inr|₹)?\\s*(?<amount>[0-9][0-9,]*(?:\\.[0-9]{1,2})?)\\b.{0,80}?\\b(?:trf|transfer(?:red)?)\\s+to\\s+(?:vpa\\s+)?(?<merchant>[a-zA-Z0-9 .&@_'/-]{2,40}?)(?=\\s+on\\b|\\s+ref(?:no|erence)?\\b|\\s+upi\\b|\\s+a/c\\b|\\s*[.;,]|\\s+-[a-z]+\\s*$|$)"
+    },
+    {
+      "id": "upi-debit-debited-for-credited",
+      "messageType": "DEBIT",
+      "pattern": "\\bdebited\\s+for\\s*(?:rs\\.?|inr|₹)?\\s*(?<amount>[0-9][0-9,]*(?:\\.[0-9]{1,2})?)\\b.{0,80}?[;.]\\s*(?<merchant>[a-zA-Z0-9 .&@_'/-]{2,40}?)\\s+credited\\b"
+    },
+    {
+      "id": "upi-debit-amount-first",
+      "messageType": "DEBIT",
+      "pattern": "(?:rs\\.?|inr|₹)\\s*(?<amount>[0-9][0-9,]*(?:\\.[0-9]{1,2})?)\\s*(?:has\\s+been\\s+)?debited\\b.{0,80}?\\bto\\s+(?:vpa\\s+)?(?<merchant>[a-zA-Z0-9 .&@_'/-]{2,40}?)(?=\\s+on\\b|\\s+ref(?:no|erence)?\\b|\\s+upi\\b|\\s+a/c\\b|\\s*[.;,]|\\s+-[a-z]+\\s*$|$)"
+    },
+    {
+      "id": "upi-debit-verb-first",
+      "messageType": "DEBIT",
+      "pattern": "\\b(?:paid|sent)\\s*(?:rs\\.?|inr|₹)?\\s*(?<amount>[0-9][0-9,]*(?:\\.[0-9]{1,2})?)\\s+to\\s+(?:vpa\\s+)?(?<merchant>[a-zA-Z0-9 .&@_'/-]{2,40}?)(?=\\s+on\\b|\\s+ref(?:no|erence)?\\b|\\s+upi\\b|\\s+a/c\\b|\\s*[.;,]|\\s+-[a-z]+\\s*$|$)"
+    }
+  ]
+}

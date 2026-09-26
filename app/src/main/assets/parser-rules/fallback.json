@@ -1,0 +1,24 @@
+{
+  "rules": [
+    {
+      "id": "fallback-debit-amount-then-verb",
+      "messageType": "DEBIT",
+      "pattern": "(?:rs\\.?|inr|₹)\\s*(?<amount>[0-9][0-9,]*(?:\\.[0-9]{1,2})?)\\b.{0,40}?\\b(?:debited|withdrawn|spent|deducted|paid)\\b"
+    },
+    {
+      "id": "fallback-debit-verb-then-amount",
+      "messageType": "DEBIT",
+      "pattern": "\\b(?:debited|withdrawn|spent|deducted|paid|sent)\\b.{0,40}?(?:rs\\.?|inr|₹)\\s*(?<amount>[0-9][0-9,]*(?:\\.[0-9]{1,2})?)"
+    },
+    {
+      "id": "fallback-credit-amount-then-verb",
+      "messageType": "CREDIT",
+      "pattern": "(?:rs\\.?|inr|₹)\\s*(?<amount>[0-9][0-9,]*(?:\\.[0-9]{1,2})?)\\b.{0,40}?\\b(?:credited|received|deposited)\\b"
+    },
+    {
+      "id": "fallback-credit-verb-then-amount",
+      "messageType": "CREDIT",
+      "pattern": "\\b(?:credited|received|deposited)\\b.{0,40}?(?:rs\\.?|inr|₹)\\s*(?<amount>[0-9][0-9,]*(?:\\.[0-9]{1,2})?)"
+    }
+  ]
+}

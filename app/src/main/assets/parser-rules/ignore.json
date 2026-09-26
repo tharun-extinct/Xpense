@@ -1,0 +1,19 @@
+{
+  "rules": [
+    {
+      "id": "otp-ignore",
+      "messageType": "IGNORE",
+      "pattern": "\\b(?:otp|one time password|verification code)\\b"
+    },
+    {
+      "id": "promo-ignore",
+      "messageType": "IGNORE",
+      "pattern": "^(?!.*\\b(?:debited|credited|spent|withdrawn|deducted)\\b).*\\b(?:offer|cashback upto|apply now|pre-approved|congratulations you have won)\\b"
+    },
+    {
+      "id": "balance-enquiry-ignore",
+      "messageType": "IGNORE",
+      "pattern": "^(?!.*\\b(?:debited|credited|spent|withdrawn|deducted|paid|sent)\\b).*\\b(?:available balance is|your balance as on|balance enquiry)\\b"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "fixtures": [
+    {
+      "body": "Rs.500.00 debited from A/c XX1234 to VPA amazon@icici on 12-09-25. Ref No 123456789012",
+      "expectedType": "DEBIT",
+      "expectedAmountMinor": 50000,
+      "expectedAccountTail": "1234"
+    },
+    {
+      "body": "You have paid Rs.1,234.50 to SWIGGY. A/c no XX5800. Ref: 987654321012",
+      "expectedType": "DEBIT",
+      "expectedAmountMinor": 123450,
+      "expectedAccountTail": "5800"
+    }
+  ]
+}

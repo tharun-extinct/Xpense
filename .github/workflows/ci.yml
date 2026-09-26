@@ -1,0 +1,149 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+permissions:
+  contents: read
+
+jobs:
+  privacy-check:
+    name: Manifest privacy check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assert no INTERNET permission is declared
+        shell: bash
+        run: |
+          # Matches only an actual <uses-permission> declaration, not comments that merely
+          # mention the permission name (see the privacy note atop AndroidManifest.xml).
+          if grep -E '<uses-permission[[:space:]]+android:name="android\.permission\.INTERNET"' app/src/main/AndroidManifest.xml; then
+            echo "::error::AndroidManifest.xml must never declare android.permission.INTERNET (architecture.md #privacy-and-permission-invariant)"
+            exit 1
+          fi
+          echo "OK: no INTERNET permission declared."
+
+  build:
+    name: assembleDebug and assembleRelease
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "9.5.0"
+
+      # Release is built here, not only on tags: it is the only variant R8 touches, so a keep rule
+      # that strips something the app needs is invisible to every other job in this file. Building
+      # it on each push means a broken shrinker configuration is found by the commit that caused
+      # it, rather than at the moment someone tries to cut a release.
+      - name: Assemble debug and release APKs
+        shell: bash
+        run: |
+          set +e
+          gradle --no-daemon assembleDebug assembleRelease > /tmp/assemble-output.log 2>&1
+          status=$?
+          echo '### Assemble raw output (last 400 lines)' >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          tail -n 400 /tmp/assemble-output.log >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          cat /tmp/assemble-output.log
+          .github/scripts/annotate-gradle-failure.sh /tmp/assemble-output.log
+          exit $status
+
+      - name: Report what R8 removed and renamed
+        if: always()
+        shell: bash
+        run: |
+          bash .github/scripts/optimization-report.sh \
+            app/build/outputs/mapping/release \
+            app/build/outputs/apk/release/app-release.apk >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload debug APK
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-apk
+          path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: warn
+
+      # Without mapping.txt a stack trace from an obfuscated build is permanently unreadable, and
+      # it is regenerated (differently) by every build, so it has to be kept with the APK it
+      # belongs to rather than recreated later.
+      - name: Upload release mapping
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-mapping
+          path: app/build/outputs/mapping/release/
+          if-no-files-found: warn
+
+  test:
+    name: Unit and Robolectric tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # 21 rather than 17: Robolectric's SDK 36 sandbox refuses to start on an older JVM
+      # ("Android SDK 36 requires Java 21"). The compiled bytecode target stays 17 via
+      # android.compileOptions, so this only affects the JVM the tests run on.
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "9.5.0"
+
+      # A blocking gate: assembleDebug alone would let a broken Room migration ship green, and a
+      # migration bug destroys the user's only copy of their history (architecture.md
+      # #error-and-recovery).
+      - name: Run JVM and Robolectric tests
+        shell: bash
+        run: |
+          set +e
+          gradle --no-daemon testDebugUnitTest > /tmp/test-output.log 2>&1
+          status=$?
+          echo '### Test raw output (last 400 lines)' >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          tail -n 400 /tmp/test-output.log >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          cat /tmp/test-output.log
+          .github/scripts/annotate-gradle-failure.sh /tmp/test-output.log
+          .github/scripts/annotate-test-failures.sh app/build/test-results/testDebugUnitTest
+          exit $status
+
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: app/build/reports/tests/
+          if-no-files-found: warn
+
+  docs-check:
+    name: Blueprint and architecture link check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Check internal Markdown links and required blueprint headings
+        run: node scripts/check-docs.mjs

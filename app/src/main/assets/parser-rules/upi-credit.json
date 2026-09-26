@@ -1,0 +1,19 @@
+{
+  "rules": [
+    {
+      "id": "upi-credit-amount-first",
+      "messageType": "CREDIT",
+      "pattern": "(?:rs\\.?|inr|₹)\\s*(?<amount>[0-9][0-9,]*(?:\\.[0-9]{1,2})?)\\s*(?:has\\s+been\\s+)?credited\\b.{0,60}?\\bfrom\\s+(?:vpa\\s+)?(?<merchant>[a-zA-Z0-9 .&@_'/-]{2,40}?)(?=\\s+on\\b|\\s+ref(?:no|erence)?\\b|\\s+upi\\b|\\s+a/c\\b|\\s*[.;,]|\\s+-[a-z]+\\s*$|$)"
+    },
+    {
+      "id": "upi-credit-credited-by-from",
+      "messageType": "CREDIT",
+      "pattern": "\\bcredited\\s+by\\s*(?:rs\\.?|inr|₹)?\\s*(?<amount>[0-9][0-9,]*(?:\\.[0-9]{1,2})?)\\b.{0,80}?\\b(?:by\\s+(?:transfer|neft|imps|upi|deposit)\\s+from|from|by)\\s+(?:vpa\\s+)?(?<merchant>[a-zA-Z0-9 .&@_'/-]{2,40}?)(?=\\s+on\\b|\\s+ref(?:no|erence)?\\b|\\s+upi\\b|\\s+a/c\\b|\\s*[.;,]|\\s+-[a-z]+\\s*$|$)"
+    },
+    {
+      "id": "upi-credit-received-from",
+      "messageType": "CREDIT",
+      "pattern": "\\breceived\\s*(?:rs\\.?|inr|₹)\\s*(?<amount>[0-9][0-9,]*(?:\\.[0-9]{1,2})?)\\b.{0,60}?\\bfrom\\s+(?:vpa\\s+)?(?<merchant>[a-zA-Z0-9 .&@_'/-]{2,40}?)(?=\\s+on\\b|\\s+ref(?:no|erence)?\\b|\\s+upi\\b|\\s+a/c\\b|\\s*[.;,]|\\s+-[a-z]+\\s*$|$)"
+    }
+  ]
+}

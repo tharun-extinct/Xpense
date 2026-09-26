@@ -1,0 +1,10 @@
+{
+  "fixtures": [
+    {
+      "body": "INR 25000.00 credited to your account from EMPLOYER PVT LTD on 01-09-25. A/c XX7758 Ref No 555666777888",
+      "expectedType": "CREDIT",
+      "expectedAmountMinor": 2500000,
+      "expectedAccountTail": "7758"
+    }
+  ]
+}

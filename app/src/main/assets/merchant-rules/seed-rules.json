@@ -1,0 +1,31 @@
+{
+  "rules": [
+    { "merchantKey": "amazon", "category": "SHOPPING" },
+    { "merchantKey": "flipkart", "category": "SHOPPING" },
+    { "merchantKey": "myntra", "category": "SHOPPING" },
+    { "merchantKey": "swiggy", "category": "FOOD_AND_DRINKS" },
+    { "merchantKey": "zomato", "category": "FOOD_AND_DRINKS" },
+    { "merchantKey": "netflix", "category": "BILLS" },
+    { "merchantKey": "hotstar", "category": "BILLS" },
+    { "merchantKey": "airtel", "category": "BILLS" },
+    { "merchantKey": "jio", "category": "BILLS" },
+    { "merchantKey": "electricity board", "category": "BILLS" },
+    { "merchantKey": "big bazaar", "category": "GROCERIES" },
+    { "merchantKey": "dmart", "category": "GROCERIES" },
+    { "merchantKey": "reliance fresh", "category": "GROCERIES" },
+    { "merchantKey": "petrol", "category": "FUEL" },
+    { "merchantKey": "indian oil", "category": "FUEL" },
+    { "merchantKey": "hp petrol", "category": "FUEL" },
+    { "merchantKey": "zerodha", "category": "INVESTMENT" },
+    { "merchantKey": "groww", "category": "INVESTMENT" },
+    { "merchantKey": "mutual fund", "category": "INVESTMENT" },
+    { "merchantKey": "irctc", "category": "TRAVEL" },
+    { "merchantKey": "makemytrip", "category": "TRAVEL" },
+    { "merchantKey": "ola", "category": "TRAVEL" },
+    { "merchantKey": "uber", "category": "TRAVEL" },
+    { "merchantKey": "rent", "category": "RENT" },
+    { "merchantKey": "emi", "category": "EMI" },
+    { "merchantKey": "salon", "category": "SELF_CARE" },
+    { "merchantKey": "spa", "category": "SELF_CARE" }
+  ]
+}
