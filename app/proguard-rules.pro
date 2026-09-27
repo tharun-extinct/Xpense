@@ -25,7 +25,7 @@
 # Scoped to every enum in the app rather than to the three that are persisted today, because the
 # cost is a handful of retained field names and the cost of forgetting to extend a narrower rule is
 # an unreadable database.
--keepclassmembers enum dev.expensetracker.app.** {
+-keepclassmembers enum dev.xpensetracker.app.** {
     <fields>;
     public static **[] values();
     public static ** valueOf(java.lang.String);
@@ -40,10 +40,10 @@
 # the same thing across versions. androidx.work ships consumer rules of its own; these are stated
 # explicitly because a library's rules are not something this repo can verify, and the failure
 # mode is silent (the worker never runs, so SMS just stops being ingested).
--keep class dev.expensetracker.app.ingestion.ProcessSmsWorker {
+-keep class dev.xpensetracker.app.ingestion.ProcessSmsWorker {
     public <init>(android.content.Context, androidx.work.WorkerParameters);
 }
--keep class dev.expensetracker.app.ingestion.SmsBackfillWorker {
+-keep class dev.xpensetracker.app.ingestion.SmsBackfillWorker {
     public <init>(android.content.Context, androidx.work.WorkerParameters);
 }
 
@@ -52,8 +52,8 @@
 # -----------------------------------------------------------------------------
 # Room looks up "<database class name>_Impl", so the two names have to be renamed together or not
 # at all. Only the class names are kept; members stay fully shrinkable.
--keep class dev.expensetracker.app.data.AppDatabase
--keep class dev.expensetracker.app.data.AppDatabase_Impl
+-keep class dev.xpensetracker.app.data.AppDatabase
+-keep class dev.xpensetracker.app.data.AppDatabase_Impl
 
 # -----------------------------------------------------------------------------
 # Deliberately absent: kotlinx.serialization keep rules.

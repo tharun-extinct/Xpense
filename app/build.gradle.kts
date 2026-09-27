@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace = "dev.expensetracker.app"
+    namespace = "dev.xpensetracker.app"
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "dev.expensetracker.app"
+        applicationId = "dev.xpensetracker.app"
         minSdk = 26
         targetSdk = 36
         versionCode = 4

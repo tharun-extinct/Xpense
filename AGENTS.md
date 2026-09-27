@@ -1,6 +1,6 @@
 # AGENTS.md — Expense Tracker
 
-Expense Tracker is an Android-only, fully offline expense tracker that parses bank/UPI SMS into categorized transactions. Package `dev.expensetracker.app`.
+Expense Tracker is an Android-only, fully offline xpense tracker that parses bank/UPI SMS into categorized transactions. Package `dev.xpensetracker.app`.
 
 ## Documentation routing (Blueprints)
 

@@ -1,4 +1,4 @@
-Build an mobile expense tracker that use sms message tracks every transaction made by the user. Github Actions CI is the only compile and Build authority, there is no local runtime. By default use Blueprints skill for  managing context. first come up with a plan and write Agent file for cursor. I have attached the UI [/assets] of an existing expense tracker. Do not clone like ditto, use it as a refference and build our application with aesthetics and intuitive UI. 
+Build an mobile xpense tracker that use sms message tracks every transaction made by the user. Github Actions CI is the only compile and Build authority, there is no local runtime. By default use Blueprints skill for  managing context. first come up with a plan and write Agent file for cursor. I have attached the UI [/assets] of an existing xpense tracker. Do not clone like ditto, use it as a refference and build our application with aesthetics and intuitive UI. 
 
 
 Don't mock up UI / date, build production grade application
@@ -51,11 +51,11 @@ Do not use the word 'NIKE' anywhere in the codebase
 
 
 
-"Not a real expense? Ignore it" - even for the "income", its showing the "expense" in the review section.
+"Not a real xpense? Ignore it" - even for the "income", its showing the "xpense" in the review section.
 
 ---
 
-addressing this problem, add a card right after the 'transaction details' with toggle button for enabling/counting as income/expense.
+addressing this problem, add a card right after the 'transaction details' with toggle button for enabling/counting as income/xpense.
 
 ```
 ________________________________________

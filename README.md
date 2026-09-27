@@ -1,6 +1,6 @@
 # Expense Tracker
 
-An Android-only, fully offline expense tracker that turns bank/UPI SMS into categorized
+An Android-only, fully offline xpense tracker that turns bank/UPI SMS into categorized
 transactions. No account, no backend, no `INTERNET` permission — everything happens on-device.
 
 ## Start here
@@ -27,7 +27,7 @@ your data anywhere — see [architecture.md § Privacy and permission invariant]
 
 ## UI reference
 
-The `assets/` folder contains reference screenshots from an existing expense tracker used purely
+The `assets/` folder contains reference screenshots from an existing xpense tracker used purely
 as an aesthetic and UX reference (dark theme, spend ring, category breakdown). Expense Tracker's own
 design system is documented in [blueprints/design-system-and-navigation.md](blueprints/design-system-and-navigation.md)
 and is not a clone of the reference.

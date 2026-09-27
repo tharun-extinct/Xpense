@@ -35,10 +35,10 @@ None.
 
 ## Relevant implementation and tests
 
-- `app/src/main/java/dev/expensetracker/app/ui/onboarding/OnboardingScreen.kt` — planned: welcome/explanation composable.
-- `app/src/main/java/dev/expensetracker/app/ui/onboarding/PermissionRequestFlow.kt` — planned: runtime permission request handling.
-- `app/src/main/java/dev/expensetracker/app/ui/onboarding/BackfillPromptScreen.kt` — planned: opt-in backfill trigger with progress.
-- `app/src/test/java/dev/expensetracker/app/ui/onboarding/` — planned: Robolectric tests for permission-granted and permission-denied navigation paths.
+- `app/src/main/java/dev/xpensetracker/app/ui/onboarding/OnboardingScreen.kt` — planned: welcome/explanation composable.
+- `app/src/main/java/dev/xpensetracker/app/ui/onboarding/PermissionRequestFlow.kt` — planned: runtime permission request handling.
+- `app/src/main/java/dev/xpensetracker/app/ui/onboarding/BackfillPromptScreen.kt` — planned: opt-in backfill trigger with progress.
+- `app/src/test/java/dev/xpensetracker/app/ui/onboarding/` — planned: Robolectric tests for permission-granted and permission-denied navigation paths.
 
 ## Acceptance or verification criteria
 

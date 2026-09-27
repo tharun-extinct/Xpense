@@ -38,11 +38,11 @@ None.
 
 ## Relevant implementation and tests
 
-- `app/src/main/java/dev/expensetracker/app/parsing/TransactionParser.kt` — planned: loads rule templates, applies regex, computes confidence.
-- `app/src/main/java/dev/expensetracker/app/parsing/ParsedTransaction.kt` — planned: the plain data class output (amount minor units, direction, merchant text, accountTail, refNo, balance, confidence).
+- `app/src/main/java/dev/xpensetracker/app/parsing/TransactionParser.kt` — planned: loads rule templates, applies regex, computes confidence.
+- `app/src/main/java/dev/xpensetracker/app/parsing/ParsedTransaction.kt` — planned: the plain data class output (amount minor units, direction, merchant text, accountTail, refNo, balance, confidence).
 - `app/src/main/assets/parser-rules/` — planned: JSON rule templates by pattern family.
 - `app/src/test/resources/sms-fixtures/` — planned: fixture corpus.
-- `app/src/test/java/dev/expensetracker/app/parsing/TransactionParserTest.kt` — planned: fixture-driven parameterized test asserting exact field extraction and confidence tier per fixture.
+- `app/src/test/java/dev/xpensetracker/app/parsing/TransactionParserTest.kt` — planned: fixture-driven parameterized test asserting exact field extraction and confidence tier per fixture.
 
 ## Acceptance or verification criteria
 

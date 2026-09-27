@@ -40,10 +40,10 @@ Gap: the pipeline did not run the `test` task while the app was being brought up
 
 ## Relevant implementation and tests
 
-- `app/src/main/java/dev/expensetracker/app/categorization/MerchantCategorizer.kt` — planned: seed + user-rule lookup, `CONFIRMED`/`NEEDS_REVIEW` decision.
-- `app/src/main/java/dev/expensetracker/app/categorization/MerchantTextNormalizer.kt` — planned: merchant-text cleanup used both for rule matching and rule-key storage.
+- `app/src/main/java/dev/xpensetracker/app/categorization/MerchantCategorizer.kt` — planned: seed + user-rule lookup, `CONFIRMED`/`NEEDS_REVIEW` decision.
+- `app/src/main/java/dev/xpensetracker/app/categorization/MerchantTextNormalizer.kt` — planned: merchant-text cleanup used both for rule matching and rule-key storage.
 - `app/src/main/assets/merchant-rules/seed-rules.json` — planned: built-in merchant-to-category table.
-- `app/src/test/java/dev/expensetracker/app/categorization/MerchantCategorizerTest.kt` — planned: seed-rule matching, user-rule precedence, confidence-gated state decision.
+- `app/src/test/java/dev/xpensetracker/app/categorization/MerchantCategorizerTest.kt` — planned: seed-rule matching, user-rule precedence, confidence-gated state decision.
 
 ## Acceptance or verification criteria
 

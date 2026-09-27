@@ -8,7 +8,7 @@ Capture every transaction-bearing SMS the device receives (live, via broadcast) 
 
 **Status:** Planned
 
-No code exists yet under `app/src/main/java/dev/expensetracker/app/ingestion/`. This blueprint records the intended design ahead of implementation.
+No code exists yet under `app/src/main/java/dev/xpensetracker/app/ingestion/`. This blueprint records the intended design ahead of implementation.
 
 ## Architecture dependencies
 
@@ -40,11 +40,11 @@ None.
 
 ## Relevant implementation and tests
 
-- `app/src/main/java/dev/expensetracker/app/ingestion/SmsReceiver.kt` — planned: manifest-declared broadcast receiver for live SMS.
-- `app/src/main/java/dev/expensetracker/app/ingestion/SmsBackfillWorker.kt` — planned: `CoroutineWorker` for on-demand historical scan.
-- `app/src/main/java/dev/expensetracker/app/ingestion/SmsNormalizer.kt` — planned: sender allowlist check, body normalization, `contentHash` computation.
-- `app/src/test/java/dev/expensetracker/app/ingestion/SmsNormalizerTest.kt` — planned: hash stability and dedupe-key tests.
-- `app/src/test/java/dev/expensetracker/app/ingestion/SmsBackfillWorkerTest.kt` — planned: Robolectric `WorkManager` test verifying dedupe against a pre-seeded `sms_hashes` table.
+- `app/src/main/java/dev/xpensetracker/app/ingestion/SmsReceiver.kt` — planned: manifest-declared broadcast receiver for live SMS.
+- `app/src/main/java/dev/xpensetracker/app/ingestion/SmsBackfillWorker.kt` — planned: `CoroutineWorker` for on-demand historical scan.
+- `app/src/main/java/dev/xpensetracker/app/ingestion/SmsNormalizer.kt` — planned: sender allowlist check, body normalization, `contentHash` computation.
+- `app/src/test/java/dev/xpensetracker/app/ingestion/SmsNormalizerTest.kt` — planned: hash stability and dedupe-key tests.
+- `app/src/test/java/dev/xpensetracker/app/ingestion/SmsBackfillWorkerTest.kt` — planned: Robolectric `WorkManager` test verifying dedupe against a pre-seeded `sms_hashes` table.
 
 ## Acceptance or verification criteria
 

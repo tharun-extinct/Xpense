@@ -42,10 +42,10 @@ Gap: aggregation correctness against seeded Room data is not yet covered end to 
 
 ## Relevant implementation and tests
 
-- `app/src/main/java/dev/expensetracker/app/analytics/SpendSummaryRepository.kt` — month-scoped spend/income aggregate queries exposed as `Flow`.
-- `app/src/main/java/dev/expensetracker/app/analytics/CategoryBreakdownRepository.kt` — per-category sums, percentages, and joined display metadata for the donut.
-- `app/src/main/java/dev/expensetracker/app/analytics/BudgetProgressCalculator.kt` — derived limit-vs-actual computation, pure function over inputs from Room.
-- `app/src/main/java/dev/expensetracker/app/analytics/MonthRange.kt` — the single month-boundary conversion, plus `previousMonth`.
+- `app/src/main/java/dev/xpensetracker/app/analytics/SpendSummaryRepository.kt` — month-scoped spend/income aggregate queries exposed as `Flow`.
+- `app/src/main/java/dev/xpensetracker/app/analytics/CategoryBreakdownRepository.kt` — per-category sums, percentages, and joined display metadata for the donut.
+- `app/src/main/java/dev/xpensetracker/app/analytics/BudgetProgressCalculator.kt` — derived limit-vs-actual computation, pure function over inputs from Room.
+- `app/src/main/java/dev/xpensetracker/app/analytics/MonthRange.kt` — the single month-boundary conversion, plus `previousMonth`.
 - `app/src/test/java/dev/xpensetracker/app/analytics/` — unit tests for month-boundary math, budget progress, and (in `CategoryBreakdownRepositoryTest`) category-breakdown percentages, slice metadata, the uncategorized bucket, and the ring rollup, against seeded in-memory Room data.
 
 ## Acceptance or verification criteria

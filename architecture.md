@@ -2,11 +2,11 @@
 
 ## Purpose and authority
 
-This document defines the shared, cross-cutting contracts for Expense Tracker: an Android-only, fully offline expense tracker that derives transactions from device SMS. Any contract defined here binds every blueprint listed in [blueprints/README.md](blueprints/README.md). Where this document and a blueprint disagree, this document wins for shared contracts; the blueprint wins for responsibility-local detail. Verified code and passing GitHub Actions runs are authoritative over prose in this file; label unverified claims explicitly rather than asserting them as fact.
+This document defines the shared, cross-cutting contracts for Expense Tracker: an Android-only, fully offline xpense tracker that derives transactions from device SMS. Any contract defined here binds every blueprint listed in [blueprints/README.md](blueprints/README.md). Where this document and a blueprint disagree, this document wins for shared contracts; the blueprint wins for responsibility-local detail. Verified code and passing GitHub Actions runs are authoritative over prose in this file; label unverified claims explicitly rather than asserting them as fact.
 
 ## System boundaries
 
-Expense Tracker is a single Android application, package `dev.expensetracker.app`, built with Kotlin, Jetpack Compose, and Room. It runs entirely on-device:
+Expense Tracker is a single Android application, package `dev.xpensetracker.app`, built with Kotlin, Jetpack Compose, and Room. It runs entirely on-device:
 
 - **In scope:** reading inbound and historical SMS on the device, parsing bank/UPI/wallet transaction messages, storing structured transactions locally, categorizing by merchant, and presenting spend analytics and budgets in a Compose UI.
 - **Out of scope (v1):** any network call, any backend service, cloud sync or backup, multi-device sync, user accounts/login, push notifications, and iOS support (SMS APIs used here do not exist on iOS).
@@ -83,10 +83,10 @@ Ownership:
 ### Privacy and permission invariant
 
 - The app declares `READ_SMS` and `RECEIVE_SMS` as required permissions, plus `ACCESS_COARSE_LOCATION`/`ACCESS_FINE_LOCATION` as optional ones. **The `AndroidManifest.xml` MUST NOT declare the `INTERNET` permission.** This is enforced structurally (no networking dependency is added to `app/build.gradle.kts`) and is checked by CI (`blueprints/build-and-ci.md`) via a manifest-permission assertion test.
-- Location is opt-in, foreground-only, and per-transaction. It is requested the first time the user taps to tag a transaction, never at launch; a denial disables exactly that one control and nothing else. `ACCESS_BACKGROUND_LOCATION` is forbidden, and no ingestion path — neither `SmsReceiver` nor `SmsBackfillWorker` — may read a position, because a location captured without a deliberate tap would turn an expense tracker into a movement log. The position is read from the platform `LocationManager`, not Play Services, so no closed-source location dependency enters the build.
+- Location is opt-in, foreground-only, and per-transaction. It is requested the first time the user taps to tag a transaction, never at launch; a denial disables exactly that one control and nothing else. `ACCESS_BACKGROUND_LOCATION` is forbidden, and no ingestion path — neither `SmsReceiver` nor `SmsBackfillWorker` — may read a position, because a location captured without a deliberate tap would turn an xpense tracker into a movement log. The position is read from the platform `LocationManager`, not Play Services, so no closed-source location dependency enters the build.
 - A stored coordinate leaves the app only through an explicit tap that hands it to the device's default map application via a `geo:` intent. That app is outside this app's trust boundary and is very likely online; the user chooses it and chooses the moment. This is the single sanctioned egress in the product, and it exists because the alternative — rendering a map in-app — would require exactly the network access this section forbids.
 - No SMS body content, parsed transaction data, or derived analytics ever leaves the device: no analytics SDK, no crash reporter with network transport, no ad SDK. Any future feature that would require `INTERNET` (e.g., cloud sync) is a shared-contract change to this section, not a local blueprint edit, and requires updating this invariant explicitly and re-justifying the SMS-permission privacy story in onboarding copy.
-- Because `READ_SMS` for expense-tracking purposes is disallowed on the Google Play Store, this app targets sideload/self-build distribution only; `blueprints/permissions-and-onboarding.md` and `blueprints/build-and-ci.md` must reflect this and never introduce a Play publishing workflow without revisiting this contract.
+- Because `READ_SMS` for xpense-tracking purposes is disallowed on the Google Play Store, this app targets sideload/self-build distribution only; `blueprints/permissions-and-onboarding.md` and `blueprints/build-and-ci.md` must reflect this and never introduce a Play publishing workflow without revisiting this contract.
 
 ## Cross-cutting flows
 

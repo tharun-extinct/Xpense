@@ -44,11 +44,11 @@ None.
 
 ## Relevant implementation and tests
 
-- `app/src/main/java/dev/expensetracker/app/data/AppDatabase.kt` — Room database class, version 2, migrations list.
-- `app/src/main/java/dev/expensetracker/app/data/entity/` — `TransactionEntity`, `SmsHashEntity`, `AccountEntity`, `MerchantRuleEntity`, `BudgetEntity`, `CategoryEntity`.
-- `app/src/main/java/dev/expensetracker/app/data/entity/BuiltInCategories.kt` — the fourteen seed rows, shared by the migration and the first-run seeder.
-- `app/src/main/java/dev/expensetracker/app/data/migration/Migration1To2.kt` — creates and seeds `categories`, indexes `transactions.category`.
-- `app/src/main/java/dev/expensetracker/app/data/dao/` — one DAO per entity, `Flow`-returning queries.
+- `app/src/main/java/dev/xpensetracker/app/data/AppDatabase.kt` — Room database class, version 2, migrations list.
+- `app/src/main/java/dev/xpensetracker/app/data/entity/` — `TransactionEntity`, `SmsHashEntity`, `AccountEntity`, `MerchantRuleEntity`, `BudgetEntity`, `CategoryEntity`.
+- `app/src/main/java/dev/xpensetracker/app/data/entity/BuiltInCategories.kt` — the fourteen seed rows, shared by the migration and the first-run seeder.
+- `app/src/main/java/dev/xpensetracker/app/data/migration/Migration1To2.kt` — creates and seeds `categories`, indexes `transactions.category`.
+- `app/src/main/java/dev/xpensetracker/app/data/dao/` — one DAO per entity, `Flow`-returning queries.
 - `app/src/test/java/dev/xpensetracker/app/data/` — Robolectric DAO tests (`TransactionDaoTest`, `SmsHashDaoTest`) plus `CategoryRepositoryTest`, which covers seed idempotency and the delete guard that stands in for the missing foreign key.
 - `app/src/test/java/dev/xpensetracker/app/data/migration/Migration1To2Test.kt` — builds the v1 schema with raw SQL (no exported schema JSON is committed, so `MigrationTestHelper` is unavailable), populates it, and asserts every row survives the upgrade and resolves against a seeded category.
 
