@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.androidx.room)
     // No kotlin-android plugin: AGP 9.0+ provides built-in Kotlin support, and applying
     // org.jetbrains.kotlin.android alongside it is rejected (blueprints/build-and-ci.md).
     alias(libs.plugins.kotlin.compose)
@@ -106,8 +107,8 @@ android {
     }
 }
 
-ksp {
-    arg("room.schemaLocation", "$projectDir/schemas")
+room {
+    schemaDirectory("$projectDir/schemas")
 }
 
 dependencies {
