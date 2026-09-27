@@ -58,7 +58,7 @@ jobs:
           tail -n 400 /tmp/assemble-output.log >> "$GITHUB_STEP_SUMMARY"
           echo '```' >> "$GITHUB_STEP_SUMMARY"
           cat /tmp/assemble-output.log
-          .github/scripts/annotate-gradle-failure.sh /tmp/assemble-output.log
+          bash .github/scripts/annotate-gradle-failure.sh /tmp/assemble-output.log
           exit $status
 
       - name: Report what R8 removed and renamed
@@ -122,8 +122,8 @@ jobs:
           tail -n 400 /tmp/test-output.log >> "$GITHUB_STEP_SUMMARY"
           echo '```' >> "$GITHUB_STEP_SUMMARY"
           cat /tmp/test-output.log
-          .github/scripts/annotate-gradle-failure.sh /tmp/test-output.log
-          .github/scripts/annotate-test-failures.sh app/build/test-results/testDebugUnitTest
+          bash .github/scripts/annotate-gradle-failure.sh /tmp/test-output.log
+          bash .github/scripts/annotate-test-failures.sh app/build/test-results/testDebugUnitTest
           exit $status
 
       - name: Upload test reports

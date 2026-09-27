@@ -50,6 +50,7 @@ androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+androidx-room = { id = "androidx.room", version.ref = "room" }
 # No kotlin-android plugin: AGP 9.0+ has built-in Kotlin support and this plugin
 # is now rejected (architecture.md is not affected; see blueprints/build-and-ci.md).
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
